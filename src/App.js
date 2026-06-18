@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "./App.css";
 
+const apiBaseUrl = (process.env.BACKEND_API_BASE_URL || "").replace(/\/$/, "");
+
 const statusLabels = {
   COMPLETED: "Completed",
   AWAITING_APPROVAL: "Awaiting approval",
@@ -202,7 +204,7 @@ export default function App() {
     setResponseData(null);
 
     try {
-      const response = await fetch("/cloud/requests", {
+      const response = await fetch(`${apiBaseUrl}/cloud/requests`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
